@@ -1,28 +1,28 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from 'react'
+import { Switch, Route } from 'react-router-dom'
+import { ThemeProvider } from 'styled-components'
+import * as theme from './theme'
+import GlobalStyle from './GlobalStyle'
+import Header from './Header'
+import PrivateRoute from './PrivateRoute'
+import PostList from './PostList'
+import PostDetail from './PostDetail'
+import PostEditor from './PostEditor'
+import Login from './Login'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+export const App = () => (
+  <ThemeProvider theme={theme}>
+    <Fragment>
+      <GlobalStyle />
+      <Header />
+      <Switch>
+        <Route exact path="/login" component={Login} />
+        <PrivateRoute exact path="/posts/new" component={PostEditor} />
+        <Route path="/posts/:postId" component={PostDetail} />
+        <Route component={PostList} />
+      </Switch>
+    </Fragment>
+  </ThemeProvider>
+)
 
-export default App;
+export default App
