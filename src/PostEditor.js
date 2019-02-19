@@ -93,7 +93,7 @@ export const enhance = compose(
     },
   }),
   withHandlers({
-    onClick: ({ createPost, title, content, history }) => async event => {
+    onClick: ({ createPost, title, content, history }) => async () => {
       await createPost({
         variables: {
           title,

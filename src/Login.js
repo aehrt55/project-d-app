@@ -24,19 +24,14 @@ export const FacebookLoginButton = styled.a`
   margin-bottom: 1.5em;
 `
 
-export const Login = ({ redirectUri, back }) => {
-  console.log(back)
-  return (
-    <Container>
-      <FacebookLoginButton
-        href={`/api/auth/facebook?redirectUri=${redirectUri}`}
-      >
-        Login with Facebook
-      </FacebookLoginButton>
-      <BackButton to={back}>Back</BackButton>
-    </Container>
-  )
-}
+export const Login = ({ redirectUri, back }) => (
+  <Container>
+    <FacebookLoginButton href={`/api/auth/facebook?redirectUri=${redirectUri}`}>
+      Login with Facebook
+    </FacebookLoginButton>
+    <BackButton to={back}>Back</BackButton>
+  </Container>
+)
 Login.propTypes = {
   redirectUri: PropTypes.string.isRequired,
   back: PropTypes.shape({
@@ -46,10 +41,6 @@ Login.propTypes = {
 }
 
 export const enhance = compose(
-  mapProps(props => {
-    console.log(props)
-    return props
-  }),
   mapProps(({ location: { state } }) => ({
     back: (state && (state.back || state.from)) || { pathname: '/' },
     redirectUri: state
