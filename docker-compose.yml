@@ -36,8 +36,8 @@ services:
       - PORT=3000
       - MONGODB_URI=mongodb://mongodb:27017/projectD
       - MYSQL_URI=mysql://root:mysql@mysql:3306/project_d
-      - FACEBOOK_APP_ID=302560177128212
-      - FACEBOOK_APP_SECRET=2027ad595a6f3cea53e3ea3cd357a546
+      - FACEBOOK_APP_ID=${FACEBOOK_APP_ID}
+      - FACEBOOK_APP_SECRET=${FACEBOOK_APP_SECRET}
   app:
     container_name: project_d_app
     image: aehrt55/project-d-app:latest
